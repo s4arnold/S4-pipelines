@@ -28,6 +28,7 @@ pipeline {
                 // Deploy your application here
                 sh '''
                 pwd
+                ls
                 '''
 
             }
