@@ -26,7 +26,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy your application here
-                sh 'make a deployment
+                sh '
+                make a deployment
                 
                 '
 
