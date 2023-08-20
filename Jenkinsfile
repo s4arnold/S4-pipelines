@@ -28,7 +28,6 @@ pipeline {
                 // Deploy your application here
                 sh '
                 make a deployment
-                
                 '
 
             }
