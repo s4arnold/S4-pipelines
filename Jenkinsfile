@@ -29,18 +29,15 @@ pipeline {
                 }
             }
         }
-        
-        stages {
 
     stage('Dockerhub Login') {
 		steps {
-			steps {
 				sh '''
-                ${DOCKERHUB_CREDENTIALS_PSW}' | docker login -u '${DOCKERHUB_CREDENTIALS_USR}' --password-stdin
-                '''
-			}
+                echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
+            '''
 		}
 	}
+
            
         stage('Test') {
             steps {
