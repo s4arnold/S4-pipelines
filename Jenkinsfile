@@ -1,6 +1,16 @@
 pipeline {
     agent any
     
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        disableConcurrentBuilds()
+        timeout (time: 60, unit: 'MINUTES')
+        timestamps()
+  }
+    
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub-s4arnold')
+	}
     stages {
         stage('SonarQube analysis') {
             agent {
@@ -20,12 +30,24 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stages {
+
+    stage('Login to Dockerhub') {
+		steps {
+			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+        stage('Hello') {
             steps {
-                // Run build commands here
-                sh 'make build'
+                sh '''
+                ls 
+                pwd
+                '''
             }
         }
+    
+
         
         stage('Test') {
             steps {
@@ -40,9 +62,10 @@ pipeline {
                 sh '''
                 pwd
                 ls
-                '''
-
+              '''
             }
-        }
+        }    
     }
 }
+
+     
