@@ -9,7 +9,7 @@ pipeline {
   }
     
     environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub-s4arnold')
+		DOCKERHUB_CREDENTIALS = credentials('dockerhub-s4arnold')
 	}
     stages {
         stage('SonarQube analysis') {
@@ -35,11 +35,12 @@ pipeline {
     stage('Dockerhub Login') {
 		steps {
 			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				sh '''
+                echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
+            '''
 			}
 		}
 	}
-
         stage('Hello') {
             steps {
                 sh '''
