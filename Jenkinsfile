@@ -41,17 +41,7 @@ pipeline {
 			}
 		}
 	}
-        stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-    
-
-        
+           
         stage('Test') {
             steps {
                 // Run unit tests here
