@@ -30,79 +30,79 @@ pipeline {
             }
         }
 
-    stage('Dockerhub Login') {
-		steps {
-				sh '''
-                echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
-            '''
-		    }
-	    }
-
+        stage('Dockerhub Login'){
+	    	steps {
+	    			sh '''
+                    echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
+                '''
+	    	    }
+	        }
     
-    stage('Build auth') {
-            steps {
-                sh '''
-                cd auth
-                docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} .
-                cd -
-             '''   
+        
+        stage('Build auth') { 
+                steps {
+                    sh '''
+                    cd auth
+                    docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} .
+                    cd -
+                 '''   
+                }
             }
-        }
-     stage('push auth') {
-            steps {
-                sh '''
-                   docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} 
-             '''   
+        stage('push auth') {
+                steps {
+                    sh '''
+                       docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} 
+                 '''   
+                }
+            }      
+    
+        stage('Build ui') {
+                steps {
+                    sh '''
+                    cd UI
+                    docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} .
+                    cd -
+                 '''   
+                }
             }
-        }      
-
-    stage('Build ui') {
-            steps {
-                sh '''
-                cd UI
-                docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} .
-                cd -
-             '''   
-            }
-        }
-    stage('push ui') {
-            steps {
-                sh '''
+        stage('push ui') {
+                steps {
+                    sh '''
                     docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} 
-             '''   
+                 '''   
+                }
+            }       
+        
+        stage('Build db') {
+                steps {
+                    sh '''
+                      cd DB
+                      docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER} .
+                      cd -
+                 '''   
+                }
             }
-        }       
+        stage('push db') {
+                steps {
+                    sh '''
+                      docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}                
+                 '''   
+                }
+            }      
     
-    stage('Build db') {
-            steps {
-                sh '''
-                cd DB
-                docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER} .
-                cd -
-             '''   
+        stage('Build weather') {
+                steps {
+                    sh '''
+                      cd weather
+                      docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER} .
+                      cd -
+                 '''   
+                }
             }
-        }
-    stage('push db') {
+        stage('push weather') {
             steps {
                 sh '''
-                docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}                
-             '''   
-            }
-        }      
-
-    stage('Build weather') {
-            steps {
-                sh '''
-                cd weather
-                docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER} .
-                cd -
-             '''   
-            }
-        }
-    stage('push weather') {
-            steps {
-                sh '''
-                docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER}
+                  docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER}
              '''   
             }
         }   
