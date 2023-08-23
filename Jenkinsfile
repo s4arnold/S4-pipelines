@@ -30,31 +30,21 @@ pipeline {
             }
         }
 
+        stage('Quality Gate') {
+            steps {
+                    timeout(time: 1, unit: 'HOURS') {
+                        waitForQualityGate abortpipeline: true 
+                    }
+                }
+            }
+
     stage('Dockerhub Login') {
 		steps {
 				sh '''
                 echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
             '''
-		}
-	}
-
-           
-        stage('Test') {
-            steps {
-                // Run unit tests here
-                sh 'make test'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                // Deploy your application here
-                sh '''
-                pwd
-                ls
-              '''
-            }
-        }    
+		    }
+	   }    
     }
 }
 
