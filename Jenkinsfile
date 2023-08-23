@@ -9,7 +9,7 @@ pipeline {
   }
     
     environment {
-		DOCKERHUB_CREDENTIALS = credentials('dockerhub-s4-pipeline')
+		DOCKERHUB_CREDENTIALS = credentials('dockerhub-s4arnold')
 	}
     stages {
         stage('SonarQube analysis') {
