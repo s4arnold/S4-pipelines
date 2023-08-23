@@ -112,4 +112,26 @@ pipeline {
     }    
 }
 
+post {
+   
+   success {
+      slackSend (channel: '#outage', color: 'good', message: "SUCCESSFUL:  Application S4-PIPELINE  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+
+ 
+    unstable {
+      slackSend (channel: '#outage', color: 'warning', message: "UNSTABLE:  Application S4-PIPELINE  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+
+    failure {
+      slackSend (channel: '#outage', color: '#FF0000', message: "FAILURE:  Application S4-PIPELINES Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+   
+    cleanup {
+      deleteDir()
+    }
+}
+
+
+
      
