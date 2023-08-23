@@ -43,7 +43,7 @@ pipeline {
             steps {
                 sh '''
                 cd auth
-                docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} .
+                docker build -t devopseasylearning/s4arnold-auth:${BUILD_NUMBER} .
                 cd -
              '''   
             }
@@ -51,7 +51,7 @@ pipeline {
      stage('push auth') {
             steps {
                 sh '''
-                   docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} 
+                   docker build -t devopseasylearning/s4arnold-auth:${BUILD_NUMBER} 
              '''   
             }
         }      
@@ -60,7 +60,7 @@ pipeline {
             steps {
                 sh '''
                 cd ui
-                docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} .
+                docker build -t devopseasylearning/s4arnold-ui:${BUILD_NUMBER} .
                 cd -
              '''   
             }
@@ -68,7 +68,7 @@ pipeline {
     stage('push ui') {
             steps {
                 sh '''
-                    docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} 
+                    docker build -t devopseasylearning/s4arnold-ui:${BUILD_NUMBER} 
              '''   
             }
         }       
@@ -77,7 +77,7 @@ pipeline {
             steps {
                 sh '''
                 cd auth
-                docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER} .
+                docker build -t devopseasylearning/s4arnold-db:${BUILD_NUMBER} .
                 cd -
              '''   
             }
@@ -86,7 +86,7 @@ pipeline {
             steps {
                 sh '''
                 
-                docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}
+                docker build -t devopseasylearning/s4arnold-db:${BUILD_NUMBER}
                 
              '''   
             }
@@ -96,7 +96,7 @@ pipeline {
             steps {
                 sh '''
                 cd weather
-                docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER} .
+                docker build -t devopseasylearning/s4arnold-weather:${BUILD_NUMBER} .
                 cd -
              '''   
             }
@@ -105,7 +105,7 @@ pipeline {
             steps {
                 sh '''
                 cd weather
-                docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER}
+                docker build -t devopseasylearning/s4arnold-weather:${BUILD_NUMBER}
              '''   
             }
         }   
