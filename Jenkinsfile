@@ -59,7 +59,7 @@ pipeline {
     stage('Build ui') {
             steps {
                 sh '''
-                cd ui
+                cd UI
                 docker build -t devopseasylearning/s4arnold-ui:${BUILD_NUMBER} .
                 cd -
              '''   
@@ -68,7 +68,7 @@ pipeline {
     stage('push ui') {
             steps {
                 sh '''
-                    docker build -t devopseasylearning/s4arnold-ui:${BUILD_NUMBER} 
+                    docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} 
              '''   
             }
         }       
@@ -76,7 +76,7 @@ pipeline {
     stage('Build db') {
             steps {
                 sh '''
-                cd auth
+                cd DB
                 docker build -t devopseasylearning/s4arnold-db:${BUILD_NUMBER} .
                 cd -
              '''   
