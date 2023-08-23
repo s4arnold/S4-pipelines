@@ -33,7 +33,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                     timeout(time: 1, unit: 'HOURS') {
-                        waitForQualityGate abortpipeline: true 
+                        waitForQualityGate abortPipeline: true 
                     }
                 }
             }
@@ -44,7 +44,7 @@ pipeline {
                 echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
             '''
 		    }
-	   }    
+	    }    
     }
 }
 
