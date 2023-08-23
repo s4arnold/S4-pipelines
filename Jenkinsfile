@@ -85,9 +85,7 @@ pipeline {
     stage('push db') {
             steps {
                 sh '''
-                
-                docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}
-                
+                docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}                
              '''   
             }
         }      
@@ -104,7 +102,6 @@ pipeline {
     stage('push weather') {
             steps {
                 sh '''
-                cd weather
                 docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER}
              '''   
             }
