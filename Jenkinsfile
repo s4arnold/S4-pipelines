@@ -40,7 +40,7 @@ pipeline {
     
         
         stage('Build auth') { 
-                steps {
+            steps {
                 sh '''
                     cd auth
                     docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} .
@@ -48,8 +48,9 @@ pipeline {
                  '''   
             }
         }
+        
         stage('push auth') {
-                steps {
+            steps {
                 sh '''
                        docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} 
                  '''   
@@ -57,7 +58,7 @@ pipeline {
         }      
     
         stage('Build ui') {
-                steps {
+            steps {
                 sh '''
                     cd UI
                     docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} .
@@ -65,8 +66,9 @@ pipeline {
                  '''   
             }
         }
+        
         stage('push ui') {
-                steps {
+            steps {
                     sh '''
                     docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} 
                  '''   
@@ -74,7 +76,7 @@ pipeline {
         }       
         
         stage('Build db') {
-                steps {
+            steps {
                 sh '''
                       cd DB
                       docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER} .
@@ -82,8 +84,9 @@ pipeline {
                  '''   
             }
         }
+        
         stage('push db') {
-                steps {
+            steps {
                 sh '''
                       docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}                
                  '''   
@@ -91,7 +94,7 @@ pipeline {
         }      
     
         stage('Build weather') {
-                steps {
+            steps {
                 sh '''
                       cd weather
                       docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER} .
