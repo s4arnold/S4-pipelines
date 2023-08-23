@@ -52,7 +52,7 @@ pipeline {
         stage('push auth') {
             steps {
                 sh '''
-                       docker build -t devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} 
+                       docker push devopseasylearning/s4-pipeline-auth:${BUILD_NUMBER} 
                  '''   
             }
         }      
@@ -70,7 +70,7 @@ pipeline {
         stage('push ui') {
             steps {
                     sh '''
-                    docker build -t devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} 
+                    docker push devopseasylearning/s4-pipeline-ui:${BUILD_NUMBER} 
                  '''   
             }
         }       
@@ -88,7 +88,7 @@ pipeline {
         stage('push db') {
             steps {
                 sh '''
-                      docker build -t devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}                
+                      docker push devopseasylearning/s4-pipeline-db:${BUILD_NUMBER}                
                  '''   
             }
         }      
@@ -105,7 +105,7 @@ pipeline {
         stage('push weather') {
             steps {
                 sh '''
-                  docker build -t devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER}
+                  docker push devopseasylearning/s4-pipeline-weather:${BUILD_NUMBER}
              '''   
             }
         }   
