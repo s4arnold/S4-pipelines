@@ -120,25 +120,25 @@ cd projects-charts
 
 cat << EOF > charts/weatherapp-auth/dev-values.yaml
 image:
-  repository: devopseasylearning/s4-pipeline-auth
+  repository: devopseasylearning/s4-arnold-auth
   tag: ${BUILD_NUMBER}
 EOF
 
 cat << EOF > charts/weatherapp-mysql/dev-values.yaml
 image:
-  repository: devopseasylearning/s4-pipeline-db
+  repository: devopseasylearning/s4-arnold-db
   tag: ${BUILD_NUMBER}
 EOF
 
 cat << EOF > charts/weatherapp-ui/dev-values.yaml
 image:
-  repository: devopseasylearning/s4-pipeline-ui
+  repository: devopseasylearning/s4-arnold-ui
   tag: ${BUILD_NUMBER}
 EOF
 
 cat << EOF > charts/weatherapp-weather/dev-values.yaml
 image:
-  repository: devopseasylearning/s4-pipeline-weather
+  repository: devopseasylearning/s4-arnold-weather
   tag: ${BUILD_NUMBER}
 EOF
 
