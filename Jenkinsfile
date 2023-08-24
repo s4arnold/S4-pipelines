@@ -114,33 +114,41 @@ pipeline {
             steps {
                 script {
                 sh '''
-                  cd ${WORKSPACE}/charts/weatherapp-auth
-cat << EOF > dev-values.yaml
+
+git clone git@github.com:s4arnold/projects-charts.git
+cd projects-charts
+
+cat << EOF > charts/weatherapp-auth/dev-values.yaml
 image:
   repository: devopseasylearning/s4-pipeline-auth
   tag: ${BUILD_NUMBER}
 EOF
 
-cd ${WORKSPACE}/charts/weatherapp-mysql
-cat << EOF > dev-values.yaml
+cat << EOF > charts/weatherapp-mysql/dev-values.yaml
 image:
   repository: devopseasylearning/s4-pipeline-db
   tag: ${BUILD_NUMBER}
 EOF
 
-cd ${WORKSPACE}/charts/weatherapp-ui
-cat << EOF > dev-values.yaml
+cat << EOF > charts/weatherapp-ui/dev-values.yaml
 image:
   repository: devopseasylearning/s4-pipeline-ui
   tag: ${BUILD_NUMBER}
 EOF
 
-cd ${WORKSPACE}/charts/weatherapp-weather
-cat << EOF > dev-values.yaml
+cat << EOF > charts/weatherapp-weather/dev-values.yaml
 image:
   repository: devopseasylearning/s4-pipeline-weather
   tag: ${BUILD_NUMBER}
 EOF
+
+git config --global user.name "s4arnold"
+git config --global user.email "tchuamarnold211@gmail.com"
+
+git add -A
+git commit -m "changes"
+git push
+ 
              '''  
                 }
             }
