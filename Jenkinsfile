@@ -116,7 +116,7 @@ pipeline {
                 sh '''
 
 git clone git@github.com:s4arnold/projects-charts.git
-cd projects-charts
+projects-charts
 
 cat << EOF > charts/weatherapp-auth/dev-values.yaml
 image:
@@ -142,7 +142,7 @@ image:
   tag: ${BUILD_NUMBER}
 EOF
 
-git config --global user.name "devopseasylearning"
+git config --global user.name "s4arnold"
 git config --global user.email "tchuamarnold211@gmail.com"
 
 git add -A
