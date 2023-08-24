@@ -115,7 +115,7 @@ pipeline {
                 script {
                 sh '''
 
-git clone git@github.com:s4arnold/projects-charts.git
+
 cd projects-charts
 
 cat << EOF > charts/weatherapp-auth/dev-values.yaml
