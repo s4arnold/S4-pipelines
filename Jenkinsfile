@@ -156,9 +156,9 @@ git push
     }    
 }
 
-  post {
+post {
      
-     success {
+    success {
         slackSend (channel: '#development-alerts', color: 'good', message: "SUCCESSFUL:  Application S4-PIPELINE  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
       }
   
