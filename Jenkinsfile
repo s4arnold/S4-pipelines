@@ -78,6 +78,10 @@ pipeline {
     
         
         stage('Build auth') { 
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                 sh '''
                     cd auth
@@ -88,6 +92,10 @@ pipeline {
         }
         
         stage('push auth') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                 sh '''
                        docker push devopseasylearning/s4-arnold-auth:${BUILD_NUMBER} 
@@ -96,6 +104,10 @@ pipeline {
         }      
     
         stage('Build ui') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                 sh '''
                     cd UI
@@ -106,6 +118,10 @@ pipeline {
         }
         
         stage('push ui') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                     sh '''
                     docker push devopseasylearning/s4-arnold-ui:${BUILD_NUMBER} 
@@ -114,6 +130,10 @@ pipeline {
         }       
         
         stage('Build db') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                 sh '''
                       cd DB
@@ -124,6 +144,10 @@ pipeline {
         }
         
         stage('push db') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                 sh '''
                       docker push devopseasylearning/s4-arnold-db:${BUILD_NUMBER}                
@@ -132,6 +156,10 @@ pipeline {
         }      
     
         stage('Build weather') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                 sh '''
                       cd weather
@@ -141,6 +169,10 @@ pipeline {
             }
         }
         stage('push weather') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'DEV' }
+                }
             steps {
                 sh '''
                   docker push devopseasylearning/s4-arnold-weather:${BUILD_NUMBER}
