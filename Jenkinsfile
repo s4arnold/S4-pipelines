@@ -17,6 +17,10 @@ pipeline {
                 script {
                     properties([
                         parameters([
+                            choice( 
+                                choices: ['DEV', 'QA' 'PREPOD'], 
+                                name: 'ENVIRONMENT'
+                            ),
                             
                              string(name: 'WARNTIME',
                              defaultValue: '1',
@@ -144,7 +148,7 @@ pipeline {
             steps {
                 script {
                 sh '''
-rm -rf projects-charts || true
+
 git clone git@github.com:s4arnold/projects-charts.git
 cd projects-charts
 
