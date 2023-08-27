@@ -144,7 +144,7 @@ pipeline {
             steps {
                 script {
                 sh '''
-
+rm -rf projects-charts || true
 git clone git@github.com:s4arnold/projects-charts.git
 cd projects-charts
 
@@ -194,9 +194,6 @@ post {
     }
     
 }
-
-
-
 
 def notifyUpgrade(String buildResult, String whereAt) {
   if (Please_leave_this_section_as_it_is == 'origin/develop') {
