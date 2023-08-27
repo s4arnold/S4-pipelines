@@ -18,12 +18,12 @@ pipeline {
                     properties([
                         parameters([
                             choice( 
-                                choices: ['DEV', 'QA' 'PREPOD'], 
+                                choices: ['DEV', 'QA', 'PREPOD'], 
                                 name: 'ENVIRONMENT'
                             ),
                             
-                             string(name: 'WARNTIME',
-                             defaultValue: '1',
+                            string(name: 'WARNTIME',
+                            defaultValue: '1',
                             description: '''Warning time (in minutes) before starting upgrade'''),
 
                           string(
