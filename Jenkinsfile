@@ -21,12 +21,31 @@ pipeline {
                                 choices: ['DEV', 'QA', 'PREPOD'], 
                                 name: 'ENVIRONMENT'
                             ),
+                            string(
+                                defaultValue: '30',
+                                name: 'auth_tag',
+                                description: '''type the auth image tag'''),
+                            
+                            string(
+                                defaultValue: '30',
+                                name: 'weather_tag',
+                                description: '''type the weather image tag'''),
+                            
+                            string(
+                                defaultValue: '30',
+                                name: 'ui_tag',
+                                description: '''type the ui image tag'''),
+                            
+                            string(
+                                defaultValue: '30',
+                                name: 'db_tag',
+                                description: '''type the db image tag'''),    
                             
                             string(name: 'WARNTIME',
                             defaultValue: '1',
                             description: '''Warning time (in minutes) before starting upgrade'''),
 
-                          string(
+                            string(
                                 defaultValue: 'develop',
                                 name: 'Please_leave_this_section_as_it_is',
                                 trim: true
