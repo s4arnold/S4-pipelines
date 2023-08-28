@@ -199,6 +199,21 @@ pipeline {
             }
         } 
 
+        stage('QA: tag images') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'QA' }
+                }
+            steps {
+                sh '''
+                   docker tag  devopseasylearning/s4-arnold-auth:$auth_tag devopseasylearning/s4-arnold-auth:qa-$auth_tag
+                   docker tag  devopseasylearning/s4-arnold-weather:$weather_tag devopseasylearning/s4-arnold-weather:$weather_tag
+                   docker tag  devopseasylearning/s4-arnold-ui:$ui_tag devopseasylearning/s4-arnold-ui:$ui_tag
+                   docker tag  devopseasylearning/s4-arnold-db:$db_tag devopseasylearning/s4-arnold-db:$db_tag
+            '''       
+            }
+        }
+
         stage('Update DEV charts') {
             when{
                 expression {
@@ -265,25 +280,25 @@ cd projects-charts
 cat << EOF > charts/weatherapp-auth/qa-values.yaml
 image:
    repository: devopseasylearning/s4-arnold-auth
-tag: ${BUILD_NUMBER}
+tag: qa-$auth_tag
 EOF
 
 cat << EOF > charts/weatherapp-mysql/qa-values.yaml
 image:
    repository: devopseasylearning/s4-arnold-db
-tag: ${BUILD_NUMBER}
+tag: qa-$db_tag
 EOF
 
 cat << EOF > charts/weatherapp-ui/qa-values.yaml
 image:
    repository: devopseasylearning/s4-arnold-ui
-tag: ${BUILD_NUMBER}
+tag: qa-$ui_tag
 EOF
 
 cat << EOF > charts/weatherapp-weather/qa-values.yaml
 image:
    repository: devopseasylearning/s4-arnold-weather
-tag: ${BUILD_NUMBER}
+tag: qa-$weather_tag
 EOF
 
 git config --global user.name "s4arnold"
