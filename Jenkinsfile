@@ -199,6 +199,21 @@ pipeline {
             }
         } 
 
+        stage('QA: pull images') {
+                when{
+                   expression {
+                     env.ENVIRONMENT == 'QA' }
+                }
+            steps {
+                sh '''
+                   docker pull  devopseasylearning/s4-arnold-auth:$auth_tag 
+                   docker pull  devopseasylearning/s4-arnold-weather:$weather_tag 
+                   docker pull  devopseasylearning/s4-arnold-ui:$ui_tag 
+                   docker pull  devopseasylearning/s4-arnold-db:$db_tag 
+            '''       
+            }
+        }
+
         stage('QA: tag images') {
                 when{
                    expression {
@@ -209,7 +224,7 @@ pipeline {
                    docker tag  devopseasylearning/s4-arnold-auth:$auth_tag devopseasylearning/s4-arnold-auth:qa-$auth_tag
                    docker tag  devopseasylearning/s4-arnold-weather:$weather_tag devopseasylearning/s4-arnold-weather:$weather_tag
                    docker tag  devopseasylearning/s4-arnold-ui:$ui_tag devopseasylearning/s4-arnold-ui:$ui_tag
-                   docker tag  devopseasylearning/s4-arnold-db:$db_tag devopseasylearning/s4-arnold-db:$db_tag
+                   docker tag  devopseasylearning/s4-arnold-db:$db_tag devopseasylearning/s4-arnold-db:$db_tag 
             '''       
             }
         }
