@@ -207,9 +207,9 @@ pipeline {
             steps {
                 sh '''
                    docker pull  devopseasylearning/s4-arnold-auth:$auth_tag 
-                   docker pull  devopseasylearning/s4-arnold-weather:$weather_tag 
                    docker pull  devopseasylearning/s4-arnold-ui:$ui_tag 
                    docker pull  devopseasylearning/s4-arnold-db:$db_tag 
+                   docker pull  devopseasylearning/s4-arnold-weather:$weather_tag 
                 '''       
             }
         }
@@ -221,10 +221,10 @@ pipeline {
                 }
             steps {
                 sh '''
-                   docker tag  devopseasylearning/s4-arnold-auth:$auth_tag devopseasylearning/s4-arnold-auth:qa-$auth_tag
-                   docker tag  devopseasylearning/s4-arnold-weather:$weather_tag devopseasylearning/s4-arnold-weather:qa-$weather_tag
-                   docker tag  devopseasylearning/s4-arnold-ui:$ui_tag devopseasylearning/s4-arnold-ui:qa-$ui_tag
-                   docker tag  devopseasylearning/s4-arnold-db:$db_tag devopseasylearning/s4-arnold-db:qa-$db_tag 
+                   docker tag  devopseasylearning/s4-arnold-auth:$auth_tag   devopseasylearning/s4-arnold-auth:qa-$auth_tag
+                   docker tag  devopseasylearning/s4-arnold-ui:$ui_tag       devopseasylearning/s4-arnold-ui:qa-$ui_tag
+                   docker tag  devopseasylearning/s4-arnold-db:$db_tag       devopseasylearning/s4-arnold-db:qa-$db_tag
+                   docker tag  devopseasylearning/s4-arnold-weather:$weather_tag   devopseasylearning/s4-arnold-weather:qa-$weather_tag 
                 '''       
             }
         }
@@ -287,7 +287,8 @@ git push
     
     steps {
         script {
-        sh '''
+        
+          sh '''
 
 git clone git@github.com:s4arnold/projects-charts.git
 cd projects-charts
@@ -295,25 +296,25 @@ cd projects-charts
 cat << EOF > charts/weatherapp-auth/qa-values.yaml
 image:
    repository: devopseasylearning/s4-arnold-auth
-tag: qa-$auth_tag
-EOF
-
-cat << EOF > charts/weatherapp-mysql/qa-values.yaml
-image:
-   repository: devopseasylearning/s4-arnold-db
-tag: qa-$db_tag
+   tag: qa-$auth_tag
 EOF
 
 cat << EOF > charts/weatherapp-ui/qa-values.yaml
 image:
    repository: devopseasylearning/s4-arnold-ui
-tag: qa-$ui_tag
+   tag: qa-$ui_tag
+EOF
+
+cat << EOF > charts/weatherapp-mysql/qa-values.yaml
+image:
+   repository: devopseasylearning/s4-arnold-db
+   tag: qa-$db_tag
 EOF
 
 cat << EOF > charts/weatherapp-weather/qa-values.yaml
 image:
    repository: devopseasylearning/s4-arnold-weather
-tag: qa-$weather_tag
+   tag: qa-$weather_tag
 EOF
 
 git config --global user.name "s4arnold"
