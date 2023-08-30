@@ -287,10 +287,10 @@ git push
                    env.ENVIRONMENT == 'QA' }
                 }
     
-    steps {
-        script {
-        
-          sh '''
+            steps {
+                script {
+                
+                  sh '''
 
 git clone git@github.com:s4arnold/projects-charts.git
 cd projects-charts
@@ -330,55 +330,6 @@ git push
                 }
             }
         }  
-
-        stage('Update PREPROD charts') {
-            when{
-                expression {
-                   env.ENVIRONMENT == 'PREPROD' }
-                }
-    
-    steps {
-        script {
-        sh '''
-
-git clone git@github.com:s4arnold/projects-charts.git
-cd projects-charts
-
-cat << EOF > charts/weatherapp-auth/preprod-values.yaml
-image:
-   repository: devopseasylearning/s4-arnold-auth
-tag: ${BUILD_NUMBER}
-EOF
-
-cat << EOF > charts/weatherapp-mysql/preprod-values.yaml
-image:
-   repository: devopseasylearning/s4-arnold-db
-tag: ${BUILD_NUMBER}
-EOF
-
-cat << EOF > charts/weatherapp-ui/preprod-values.yaml
-image:
-   repository: devopseasylearning/s4-arnold-ui
-tag: ${BUILD_NUMBER}
-EOF
-
-cat << EOF > charts/weatherapp-weather/preprod-values.yaml
-image:
-   repository: devopseasylearning/s4-arnold-weather
-tag: ${BUILD_NUMBER}
-EOF
-
-git config --global user.name "s4arnold"
-git config --global user.email "tchuamarnold211@gmail.com"
-
-git add -A
-git commit -m "changes"
-git push
-
-     '''  
-                }
-            }
-        } 
     }
 }    
 
