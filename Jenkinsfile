@@ -218,7 +218,7 @@ pipeline {
         stage('QA: tag images') {
             when{
                 expression {
-                     env.ENVIRONMENT == 'QA' }
+                    env.ENVIRONMENT == 'QA' }
                 }
             steps {
                 sh '''
@@ -228,20 +228,18 @@ pipeline {
                    docker tag  devopseasylearning/s4-arnold-weather:$weather_tag   devopseasylearning/s4-arnold-weather:qa-$weather_tag 
                 
             '''       
-            }
         }
+    }
 
         stage('Update DEV charts') {
             when{
                 expression {
                    env.ENVIRONMENT == 'DEV' }
                 }
-            
-            
             steps {
                 script {
                 sh '''
-
+            
 git clone git@github.com:s4arnold/projects-charts.git
 cd projects-charts
 
@@ -276,7 +274,7 @@ git add -A
 git commit -m "changes"
 git push
     
-              '''  
+            '''  
                 }
             }
         } 
@@ -286,7 +284,6 @@ git push
                 expression {
                    env.ENVIRONMENT == 'QA' }
                 }
-    
             steps {
                 script {
                 
@@ -326,7 +323,7 @@ git add -A
 git commit -m "changes"
 git push
 
-     '''  
+            '''  
                 }
             }
         }  
