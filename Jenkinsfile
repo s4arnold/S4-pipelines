@@ -29,19 +29,19 @@ pipeline {
                             
                             string(
                                 defaultValue: ' ',
-                                name: 'weather_tag',
+                                name: 'ui_tag',
                                 description: '''type the weather image tag''',
                                 ),
                             
                             string(
                                 defaultValue: ' ',
-                                name: 'ui_tag',
+                                name: 'db_tag',
                                 description: '''type the ui image tag''',
                                 ),
                             
                             string(
                                 defaultValue: ' ',
-                                name: 'db_tag',
+                                name: 'weather_tag',
                                 description: '''type the db image tag''',
                                 ),    
                             
