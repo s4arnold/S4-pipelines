@@ -209,10 +209,10 @@ pipeline {
                 }
             steps {
                 sh '''
-                   docker pull  devopseasylearning/s4-arnold-auth  
-                   docker pull  devopseasylearning/s4-arnold-ui 
-                   docker pull  devopseasylearning/s4-arnold-db 
-                   docker pull  devopseasylearning/s4-arnold-weather 
+                   docker pull  devopseasylearning/s4-arnold-auth:tagname  
+                   docker pull  devopseasylearning/s4-arnold-ui:tagname 
+                   docker pull  devopseasylearning/s4-arnold-db:tagname
+                   docker pull  devopseasylearning/s4-arnold-weather:tagname 
                 
             '''       
             }
