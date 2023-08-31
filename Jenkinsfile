@@ -209,12 +209,12 @@ pipeline {
                 }
             steps {
                 sh '''
-                   docker pull  devopseasylearning/s4-arnold-auth:tagname  
-                   docker pull  devopseasylearning/s4-arnold-ui:tagname 
-                   docker pull  devopseasylearning/s4-arnold-db:tagname
-                   docker pull  devopseasylearning/s4-arnold-weather:tagname 
+                   docker pull  devopseasylearning/s4-arnold-auth:$auth_tag  
+                   docker pull  devopseasylearning/s4-arnold-ui:$ui_tag 
+                   docker pull  devopseasylearning/s4-arnold-db:$db_tag
+                   docker pull  devopseasylearning/s4-arnold-weather:$weather_tag 
                 
-            '''       
+              '''       
             }
         }
 
@@ -230,9 +230,9 @@ pipeline {
                    docker tag  devopseasylearning/s4-arnold-db:$db_tag       devopseasylearning/s4-arnold-db:qa-$db_tag
                    docker tag  devopseasylearning/s4-arnold-weather:$weather_tag   devopseasylearning/s4-arnold-weather:qa-$weather_tag 
                 
-            '''       
+              '''       
+            }
         }
-    }
 
         stage('Update DEV charts') {
             when{
