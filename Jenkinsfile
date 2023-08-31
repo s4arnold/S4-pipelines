@@ -287,6 +287,7 @@ git push
                 expression {
                    env.ENVIRONMENT == 'QA' }
                 }
+            
             steps {
                 script {
                 
@@ -326,10 +327,10 @@ git add -A
 git commit -m "changes"
 git push
 
-            '''  
-                }
-            }
-        }
+                   '''  
+               }
+           }
+       }
         
          stage('Update PREPROD charts') {
             when{
