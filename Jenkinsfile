@@ -22,25 +22,25 @@ pipeline {
                                 name: 'ENVIRONMENT'
                             ),
                             string(
-                                defaultValue: ' ',
+                                defaultValue: '10',
                                 name: 'auth_tag',
                                 description: '''type the auth image tag''',
                                 ),
                             
                             string(
-                                defaultValue: ' ',
+                                defaultValue: '10',
                                 name: 'ui_tag',
                                 description: '''type the weather image tag''',
                                 ),
                             
                             string(
-                                defaultValue: ' ',
+                                defaultValue: '10',
                                 name: 'db_tag',
                                 description: '''type the ui image tag''',
                                 ),
                             
                             string(
-                                defaultValue: ' ',
+                                defaultValue: '10',
                                 name: 'weather_tag',
                                 description: '''type the db image tag''',
                                 ),    
