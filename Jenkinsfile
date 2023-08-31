@@ -209,10 +209,10 @@ pipeline {
                 }
             steps {
                 sh '''
-                   docker pull  devopseasylearning/s4-arnold-auth:$auth_tag 
-                   docker pull  devopseasylearning/s4-arnold-ui:$ui_tag 
-                   docker pull  devopseasylearning/s4-arnold-db:$db_tag 
-                   docker pull  devopseasylearning/s4-arnold-weather:$weather_tag 
+                   docker pull  devopseasylearning/s4-arnold-auth  
+                   docker pull  devopseasylearning/s4-arnold-ui 
+                   docker pull  devopseasylearning/s4-arnold-db 
+                   docker pull  devopseasylearning/s4-arnold-weather 
                 
             '''       
             }
@@ -328,9 +328,9 @@ git commit -m "changes"
 git push
 
                    '''  
-               }
-           }
-       }
+                }
+            }
+        }
         
          stage('Update PREPROD charts') {
             when{
