@@ -214,7 +214,7 @@ pipeline {
                    docker pull  devopseasylearning/s4-arnold-db:$db_tag
                    docker pull  devopseasylearning/s4-arnold-weather:$weather_tag 
                 
-              '''       
+               '''       
             }
         }
 
@@ -230,7 +230,7 @@ pipeline {
                    docker tag  devopseasylearning/s4-arnold-db:$db_tag       devopseasylearning/s4-arnold-db:qa-$db_tag
                    docker tag  devopseasylearning/s4-arnold-weather:$weather_tag   devopseasylearning/s4-arnold-weather:qa-$weather_tag 
                 
-              '''       
+               '''       
             }
         }
 
