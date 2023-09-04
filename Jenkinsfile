@@ -52,9 +52,7 @@ pipeline {
                             string(
                                 defaultValue: 'develop',
                                 name: 'Please_leave_this_section_as_it_is',
-                            ),
-
-                           
+                            ),                          
                         ])
                     ])
                 }
@@ -118,7 +116,8 @@ pipeline {
         stage('push auth') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' }
+                     env.ENVIRONMENT == 'DEV' && branch 'develop'
+                   }
                 }
             steps {
                 sh '''
