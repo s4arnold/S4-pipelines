@@ -52,7 +52,11 @@ pipeline {
                             string(
                                 defaultValue: 'develop',
                                 name: 'Please_leave_this_section_as_it_is',
-                            ),                          
+                            ),  
+                            choice( 
+                                choices: ['BRANCH'], 
+                                name: 'ENVIRONMENT' 
+                            ),                      
                         ])
                     ])
                 }
@@ -116,7 +120,7 @@ pipeline {
         stage('push auth') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' && branch 'develop'
+                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
                    }
                 }
             steps {
@@ -143,7 +147,8 @@ pipeline {
         stage('push ui') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' }
+                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
+                    }
                 }
             steps {
                     sh '''
@@ -169,7 +174,8 @@ pipeline {
         stage('push db') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' }
+                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
+                    }
                 }
             steps {
                 sh '''
@@ -194,7 +200,8 @@ pipeline {
         stage('push weather') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' }
+                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
+                    }
                 }
             steps {
                 sh '''
@@ -206,7 +213,7 @@ pipeline {
         stage('QA: pull images') {
             when{
                 expression {
-                     env.ENVIRONMENT == 'QA' }
+                     env.ENVIRONMENT == 'QA' && env.BRANCH == 'develop' }
                 }
             steps {
                 sh '''
@@ -222,7 +229,7 @@ pipeline {
         stage('QA: tag images') {
             when{
                 expression {
-                    env.ENVIRONMENT == 'QA' }
+                    env.ENVIRONMENT == 'QA' && env.BRANCH == 'develop' }
                 }
             steps {
                 sh '''
@@ -238,7 +245,7 @@ pipeline {
         stage('Update DEV charts') {
             when{
                 expression {
-                   env.ENVIRONMENT == 'DEV' }
+                   env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop' }
                 }
             steps {
                 script {
@@ -286,7 +293,7 @@ git push
         stage('Update QA charts') {
             when{
                 expression {
-                   env.ENVIRONMENT == 'QA' }
+                   env.ENVIRONMENT == 'QA' && env.BRANCH == 'develop' }
                 }
             
             steps {
@@ -336,7 +343,7 @@ git push
          stage('Update PREPROD charts') {
             when{
                 expression {
-                   env.ENVIRONMENT == 'PREPROD' }
+                   env.ENVIRONMENT == 'PREPROD' && env.BRANCH == 'develop' }
                 }
             steps {
                 script {
