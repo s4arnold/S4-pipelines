@@ -120,7 +120,7 @@ pipeline {
         stage('push auth') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
+                     env.ENVIRONMENT == 'DEV' 
                    }
                 }
             steps {
@@ -147,7 +147,7 @@ pipeline {
         stage('push ui') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
+                     env.ENVIRONMENT == 'DEV' 
                     }
                 }
             steps {
@@ -174,7 +174,7 @@ pipeline {
         stage('push db') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
+                     env.ENVIRONMENT == 'DEV' 
                     }
                 }
             steps {
@@ -200,7 +200,7 @@ pipeline {
         stage('push weather') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop'
+                     env.ENVIRONMENT == 'DEV'  
                     }
                 }
             steps {
