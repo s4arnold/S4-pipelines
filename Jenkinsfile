@@ -65,6 +65,11 @@ pipeline {
 
 
         stage('warning') {
+            when{
+                   expression {
+                     env.BRANCH == 'develop' }
+                }
+              
               steps {
                 script {
                     notifyUpgrade(currentBuild.currentResult, "WARNING")
@@ -217,10 +222,10 @@ pipeline {
                 }
             steps {
                 sh '''
-                   docker pull  devopseasylearning/s4-arnold-auth:$auth_tag  
-                   docker pull  devopseasylearning/s4-arnold-ui:$ui_tag 
-                   docker pull  devopseasylearning/s4-arnold-db:$db_tag
-                   docker pull  devopseasylearning/s4-arnold-weather:$weather_tag 
+                   docker pull  devopseasylearning/s4-arnold-auth:$s4-arnold-auth_tag  
+                   docker pull  devopseasylearning/s4-arnold-ui:$s4-arnold-ui_tag 
+                   docker pull  devopseasylearning/s4-arnold-db:$s4-arnold-db_tag
+                   docker pull  devopseasylearning/s4-arnold-weather:$s4-arnold-weather_tag 
                 
                '''       
             }
@@ -233,10 +238,10 @@ pipeline {
                 }
             steps {
                 sh '''
-                   docker tag  devopseasylearning/s4-arnold-auth:$auth_tag   devopseasylearning/s4-arnold-auth:qa-$auth_tag
-                   docker tag  devopseasylearning/s4-arnold-ui:$ui_tag       devopseasylearning/s4-arnold-ui:qa-$ui_tag
-                   docker tag  devopseasylearning/s4-arnold-db:$db_tag       devopseasylearning/s4-arnold-db:qa-$db_tag
-                   docker tag  devopseasylearning/s4-arnold-weather:$weather_tag   devopseasylearning/s4-arnold-weather:qa-$weather_tag 
+                   docker tag  devopseasylearning/s4-arnold-auth:$s4-arnold-auth_tag   devopseasylearning/s4-arnold-auth:qa-$s4-arnold-auth_tag
+                   docker tag  devopseasylearning/s4-arnold-ui:$s4-arnold-ui_tag       devopseasylearning/s4-arnold-ui:qa-$s4-arnold-ui_tag
+                   docker tag  devopseasylearning/s4-arnold-db:$s4-arnold-db_tag       devopseasylearning/s4-arnold-db:qa-$s4-arnold-db_tag
+                   docker tag  devopseasylearning/s4-arnold-weather:$s4-arnold-weather_tag   devopseasylearning/s4-arnold-weather:qa-$s4-arnold-weather_tag 
                 
                '''       
             }
