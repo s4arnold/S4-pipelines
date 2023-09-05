@@ -52,11 +52,7 @@ pipeline {
                             string(
                                 defaultValue: 'develop',
                                 name: 'Please_leave_this_section_as_it_is',
-                            ),  
-                            choice( 
-                                choices: ['BRANCH'], 
-                                name: 'ENVIRONMENT' 
-                            ),                      
+                            ),                        
                         ])
                     ])
                 }
