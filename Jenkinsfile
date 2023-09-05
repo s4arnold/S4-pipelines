@@ -65,12 +65,7 @@ pipeline {
 
 
         stage('warning') {
-            when{
-                   expression {
-                     env.BRANCH == 'develop' }
-                }
-              
-              steps {
+            steps {
                 script {
                     notifyUpgrade(currentBuild.currentResult, "WARNING")
                     sleep(time:env.WARNTIME, unit:"MINUTES")
@@ -218,7 +213,7 @@ pipeline {
         stage('QA: pull images') {
             when{
                 expression {
-                     env.ENVIRONMENT == 'QA' && env.BRANCH == 'develop' }
+                     env.ENVIRONMENT == 'QA' }
                 }
             steps {
                 sh '''
@@ -234,7 +229,7 @@ pipeline {
         stage('QA: tag images') {
             when{
                 expression {
-                    env.ENVIRONMENT == 'QA' && env.BRANCH == 'develop' }
+                    env.ENVIRONMENT == 'QA'}
                 }
             steps {
                 sh '''
@@ -250,7 +245,7 @@ pipeline {
         stage('Update DEV charts') {
             when{
                 expression {
-                   env.ENVIRONMENT == 'DEV' && env.BRANCH == 'develop' }
+                   env.ENVIRONMENT == 'DEV' }
                 }
             steps {
                 script {
@@ -298,7 +293,7 @@ git push
         stage('Update QA charts') {
             when{
                 expression {
-                   env.ENVIRONMENT == 'QA' && env.BRANCH == 'develop' }
+                   env.ENVIRONMENT == 'QA' }
                 }
             
             steps {
@@ -348,7 +343,7 @@ git push
          stage('Update PREPROD charts') {
             when{
                 expression {
-                   env.ENVIRONMENT == 'PREPROD' && env.BRANCH == 'develop' }
+                   env.ENVIRONMENT == 'PREPROD' }
                 }
             steps {
                 script {
