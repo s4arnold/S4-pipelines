@@ -156,7 +156,8 @@ pipeline {
         stage('Build db') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' }
+                     env.ENVIRONMENT == 'DEV' 
+                    }
                 }
             steps {
                 sh '''
@@ -183,7 +184,8 @@ pipeline {
         stage('Build weather') {
                 when{
                    expression {
-                     env.ENVIRONMENT == 'DEV' }
+                     env.ENVIRONMENT == 'DEV' 
+                    }
                 }
             steps {
                 sh '''
@@ -209,7 +211,8 @@ pipeline {
         stage('QA: pull images') {
             when{
                 expression {
-                     env.ENVIRONMENT == 'QA' }
+                     env.ENVIRONMENT == 'QA' 
+                    }
                 }
             steps {
                 sh '''
@@ -225,8 +228,9 @@ pipeline {
         stage('QA: tag images') {
             when{
                 expression {
-                    env.ENVIRONMENT == 'QA'}
+                    env.ENVIRONMENT == 'QA'
                 }
+            }
             steps {
                 sh '''
                    docker tag  devopseasylearning/s4-arnold-auth:$auth_tag   devopseasylearning/s4-arnold-auth:qa-$auth_tag
@@ -241,8 +245,9 @@ pipeline {
         stage('Update DEV charts') {
             when{
                 expression {
-                   env.ENVIRONMENT == 'DEV' }
+                   env.ENVIRONMENT == 'DEV' 
                 }
+            }
             steps {
                 script {
                 sh '''
