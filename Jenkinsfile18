@@ -27,8 +27,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // This stage can include deployment commands
-                sh 'mvn deploy' // Example: Deploying with Maven
+                sh '''
+                mvn deploy
+                ''' 
             }
         }
     }
