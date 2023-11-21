@@ -106,7 +106,6 @@ pipeline {
                 }
             steps {
                 sh '''
-                    ls
                     cd auth
                     docker build -t devopseasylearning/s4-arnold-auth:${BUILD_NUMBER} .
                     cd -
